@@ -6,7 +6,7 @@
 /*   By: mouarar <mouarar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:06:25 by mouarar           #+#    #+#             */
-/*   Updated: 2024/11/16 08:27:31 by mouarar          ###   ########.fr       */
+/*   Updated: 2024/11/20 10:41:28 by mouarar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ char	*fill(char *line)
 	size_t	i;
 	char	*new_line;
 
-	if (!line)
-		return (NULL);
 	if (ft_strlen(line) == 0)
 		return (NULL);
 	i = 0;
@@ -59,7 +57,7 @@ char	*fill(char *line)
 	return (new_line);
 }
 
-char	*new_result(char *result)
+char	*new_result(char *text)
 {
 	int		i;
 	int		j;
@@ -67,22 +65,22 @@ char	*new_result(char *result)
 
 	i = 0;
 	j = 0;
-	while (result[i] && result[i] != '\n')
+	while (text[i] && text[i] != '\n')
 		i++;
-	if (result[i] == '\n')
+	if (text[i] == '\n')
 		i++;
-	if (result[i] == '\0')
+	if (text[i] == '\0')
 	{
-		free(result);
+		free(text);
 		return (NULL);
 	}
-	tmp = malloc(sizeof(char) * (ft_strlen(result) - i + 1));
+	tmp = malloc(sizeof(char) * (ft_strlen(text + i) + 1));
 	if (!tmp)
 		return (NULL);
-	while (result[i])
-		tmp[j++] = result[i++];
+	while (text[i])
+		tmp[j++] = text[i++];
 	tmp[j] = '\0';
-	free(result);
+	free(text);
 	return (tmp);
 }
 
